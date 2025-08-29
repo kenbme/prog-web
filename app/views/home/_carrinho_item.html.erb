@@ -4,7 +4,9 @@
       <div>
         <% carrinho_item.produto.imagens.each do |imagem| %>
           <figure>
-            <%= image_tag imagem, width: 150, alt: "Imagem do produto #{carrinho_item.produto.nome}" %>
+            <%= image_tag imagem,
+            width: 150,
+            alt: "Imagem do produto #{carrinho_item.produto.nome}" %>
           </figure>
         <% end %>
       </div>
@@ -20,12 +22,15 @@
     <dd><%= carrinho_item.produto.descricao %></dd>
 
     <dt>Preço unitário:</dt>
-    <dd>R$ <%= format_preco(carrinho_item.produto.preco) %></dd>
+    <dd>R$
+      <%= format_preco(carrinho_item.produto.preco) %></dd>
 
     <dt>Quantidade:</dt>
-    <dd><%= carrinho_item.quantidade %> unidades</dd>
+    <dd><%= carrinho_item.quantidade %>
+      unidades</dd>
 
     <dt>Subtotal:</dt>
-    <dd>R$ <%= format_preco(carrinho_item.produto.preco * carrinho_item.quantidade) %></dd>
+    <dd>R$
+      <%= format_preco(carrinho_item.produto.preco * carrinho_item.quantidade) %></dd>
   </dl>
 </article>
