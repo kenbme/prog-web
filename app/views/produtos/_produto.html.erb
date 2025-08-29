@@ -1,0 +1,46 @@
+<article>
+  <% if produto.imagens.attached? %>
+    <section>
+      <div>
+        <% produto.imagens.each do |imagem| %>
+          <figure>
+            <%= image_tag imagem, width: 150, alt: "Imagem do produto #{produto.nome}" %>
+          </figure>
+        <% end %>
+      </div>
+    </section>
+  <% else %>
+    <p>Sem imagens</p>
+  <% end %>
+
+  <h2><%= produto.nome %></h2>
+
+  <dl>
+    <dt>Descrição:</dt>
+    <dd><%= produto.descricao %></dd>
+
+    <dt>Preço:</dt>
+    <dd>R$
+      <%= format_preco(produto.preco) %></dd>
+
+    <dt>Estoque:</dt>
+    <dd><%= produto.estoque %>
+      unidades</dd>
+
+    <dt>Categoria:</dt>
+    <dd><%= produto.categoria.nome %></dd>
+
+    <dt>Tags:</dt>
+    <dd>
+      <% if produto.tags.any? %>
+        <ul>
+          <% produto.tags.each do |tag| %>
+            <li><%= tag.nome %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        Nenhuma tag
+      <% end %>
+    </dd>
+  </dl>
+</article>

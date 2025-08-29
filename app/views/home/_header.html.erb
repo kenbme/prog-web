@@ -9,4 +9,29 @@
       <li><a href="/contato">Contato</a></li>
     </ul>
   </nav>
+
+  <% if current_page?(root_path) %>
+    <button id="change-theme">Trocar tema</button>
+  <% end %>
 </header>
+
+<script>
+  const html = document.documentElement;
+
+  const theme = localStorage.getItem("data-theme");
+  if(theme) {
+    html.setAttribute("data-theme", theme)
+  }
+
+  const button = document.getElementById("change-theme");
+  button.addEventListener("click", () => {
+    const theme = html.getAttribute("data-theme");
+    if (theme == "dark") {
+      html.setAttribute("data-theme", "light");
+      localStorage.setItem("data-theme", "light")
+    } else {
+      html.setAttribute("data-theme", "dark");
+      localStorage.setItem("data-theme", "dark")
+    }
+  });
+</script>

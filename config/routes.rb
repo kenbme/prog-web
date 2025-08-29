@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   root "home#index"
   get "contato" => "home#contato"
+
+  get "produtos" => "produtos#index"
 end

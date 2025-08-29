@@ -1,0 +1,11 @@
+<%= render "home/header" %>
+
+<main>
+  <section>
+    <% produtos.each do |produto| %>
+      <%= render "produto", produto: %>
+    <% end %>
+  </section>
+</main>
+
+<%= render "home/footer" %>
