@@ -5,5 +5,7 @@ class Carrinho < ApplicationRecord
   has_many :carrinho_itens, dependent: :destroy, class_name: "CarrinhoItem"
   has_many :produtos, through: :carrinho_items
 
+  validates :usuario_id, uniqueness: true
+
   alias_method :itens, :carrinho_itens
 end

@@ -5,5 +5,7 @@ class CreateCarrinhos < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
+
+    add_index :carrinhos, :usuario_id, unique: true
   end
 end

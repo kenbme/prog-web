@@ -1,7 +1,18 @@
 <%= render "header" %>
 
 <main>
-  minha conta
+  <h1>Bem-vindo,
+    <%= usuario.nome %>!</h1>
+
+  <section>
+    <h2>Seus dados:</h2>
+    <ul>
+      <li><strong>Nome:</strong>
+        <%= usuario.nome %></li>
+      <li><strong>Data de cadastro:</strong>
+        <%= usuario.created_at.strftime("%d/%m/%Y") %></li>
+    </ul>
+  </section>
 </main>
 
 <%= render "footer" %>

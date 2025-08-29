@@ -7,5 +7,7 @@ class CreateCarrinhoItens < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
+
+    add_index :carrinho_itens, [:carrinho_id, :produto_id], unique: true
   end
 end
