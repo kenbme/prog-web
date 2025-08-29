@@ -5,7 +5,7 @@ class CreateProdutos < ActiveRecord::Migration[8.0]
       t.string :descricao, null: false
       t.integer :preco, null: false
       t.integer :estoque, null: false
-      t.references :categoria, null: false
+      t.references :categoria, null: false, foreign_key: true
 
       t.timestamps
     end

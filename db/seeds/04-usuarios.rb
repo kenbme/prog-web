@@ -1,0 +1,1 @@
+Usuario.create!(nome: "João")

@@ -1,0 +1,11 @@
+<%= render "header" %>
+
+<main>
+
+  <% carrinho.itens.each  do |carrinho_item| %>
+    <%= render "carrinho_item", carrinho_item: %>
+  <% end %>
+
+</main>
+
+<%= render "footer" %>

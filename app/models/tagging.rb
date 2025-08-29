@@ -1,4 +1,6 @@
 class Tagging < ApplicationRecord
+  self.table_name = "taggings"
+
   belongs_to :tag
   belongs_to :produto
 
