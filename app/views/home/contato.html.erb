@@ -1,0 +1,30 @@
+<%= render "header" %>
+
+<main>
+  <section>
+    <h2>Fale Conosco</h2>
+    <form>
+      <p>
+        <label for="nome">Nome:</label><br/>
+        <input type="text" id="nome" name="nome" required/>
+      </p>
+      <p>
+        <label for="email">E-mail:</label><br/>
+        <input type="email" id="email" name="email" required/>
+      </p>
+      <p>
+        <label for="assunto">Assunto:</label><br/>
+        <input type="text" id="assunto" name="assunto" required/>
+      </p>
+      <p>
+        <label for="mensagem">Mensagem:</label><br/>
+        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+      </p>
+      <p>
+        <button type="submit">Enviar</button>
+      </p>
+    </form>
+  </section>
+</main>
+
+<%= render "footer" %>
