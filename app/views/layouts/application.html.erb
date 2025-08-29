@@ -19,5 +19,11 @@
 
   <body>
     <%= yield %>
+
+    <% if flash[:alert] %>
+      <script>
+        alert("<%= j flash[:alert] %>");
+      </script>
+    <% end %>
   </body>
 </html>

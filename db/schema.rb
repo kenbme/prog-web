@@ -45,6 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_29_203959) do
     t.integer "quantidade", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["carrinho_id", "produto_id"], name: "index_carrinho_itens_on_carrinho_id_and_produto_id", unique: true
     t.index ["carrinho_id"], name: "index_carrinho_itens_on_carrinho_id"
     t.index ["produto_id"], name: "index_carrinho_itens_on_produto_id"
   end
@@ -57,14 +58,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_29_203959) do
   end
 
   create_table "categorias", force: :cascade do |t|
-    t.string "nome"
+    t.string "nome", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["nome"], name: "index_categorias_on_nome", unique: true
   end
 
   create_table "produtos", force: :cascade do |t|
     t.string "nome", null: false
-    t.text "descricao", null: false
+    t.string "descricao", null: false
     t.integer "preco", null: false
     t.integer "estoque", null: false
     t.integer "categoria_id", null: false
@@ -92,8 +94,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_29_203959) do
 
   create_table "usuarios", force: :cascade do |t|
     t.string "nome", null: false
+    t.string "cargo", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cargo"], name: "index_usuarios_on_cargo"
     t.index ["nome"], name: "index_usuarios_on_nome", unique: true
   end
 
@@ -102,6 +106,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_29_203959) do
   add_foreign_key "carrinho_itens", "carrinhos"
   add_foreign_key "carrinho_itens", "produtos"
   add_foreign_key "carrinhos", "usuarios"
+  add_foreign_key "produtos", "categorias"
   add_foreign_key "taggings", "produtos"
   add_foreign_key "taggings", "tags"
 end
