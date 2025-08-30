@@ -1,14 +1,17 @@
 <header class="container">
   <h1>Mercado Online</h1>
 
-  <nav class="container-fluid">
-    <div>
-    </div>
+  <nav class="grid">
+    <% if current_page?(:root) %>
+      <div data-controller="session">
+        <span data-session-target="hello"></span>
+      </div>
+    <% end %>
     <ul>
       <li><%= link_to "Início", :root %></li>
       <li><%= link_to "Produtos", :produtos %></li>
       <li><%= link_to "Carrinho", :carrinho %></li>
-      <li><%= link_to "Minha Conta", :minha_conta %></li>
+      <li><%= link_to "Perfil", :minha_conta %></li>
       <li><%= link_to "Contato", :contato %></li>
     </ul>
   </nav>
