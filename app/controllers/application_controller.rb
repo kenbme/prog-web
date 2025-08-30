@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_record_invalid(exception)
-    render json: { error: exception.record.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    render json: {error: exception.record.errors.full_messages.to_sentence}, status: :unprocessable_entity
   end
 
   rescue_from UsuarioNaoLogadoError, with: :handle_usuario_nao_logado

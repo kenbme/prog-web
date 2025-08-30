@@ -24,7 +24,8 @@
       <%= format_preco(produto.preco) %></dd>
 
     <dt>Estoque:</dt>
-    <dd><%= produto.estoque %> <%= "unidade".pluralize(produto.estoque) %></dd>
+    <dd><%= produto.estoque %>
+      <%= "unidade".pluralize(produto.estoque) %></dd>
 
     <dt>Categoria:</dt>
     <dd><%= produto.categoria.nome %></dd>
@@ -42,13 +43,14 @@
       <% end %>
     </dd>
 
-    <%= button_to "Adicionar ao carrinho",
-    :add_to_carrinho,
-    method: :post,
-    params: {
-      produto_id: produto.id,
-      quantidade: 1,
-    },
-    remote: true %>
+    <button
+      data-controller="carrinho"
+      data-action="click->carrinho#add_to_carrinho"
+      data-produto-id="<%= produto.id %>"
+      data-quantidade="1"
+      data-url="<%= url_for :add_to_carrinho %>"
+    >
+      Adicionar ao carrinho
+    </button>
   </dl>
 </article>

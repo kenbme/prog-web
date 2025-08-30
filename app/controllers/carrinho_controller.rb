@@ -7,7 +7,7 @@ class CarrinhoController < ApplicationController
     item.quantidade ||= 0
     item.quantidade += params[:quantidade].to_i
     item.save!
-    head :ok
+    render json: {}, status: :ok
   end
 
   def clean_carrinho
@@ -15,6 +15,6 @@ class CarrinhoController < ApplicationController
 
     carrinho = Carrinho.find_by!(usuario: current_user)
     carrinho.itens.destroy_all
-    head :ok
+    render json: {}, status: :ok
   end
 end
