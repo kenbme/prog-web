@@ -1,7 +1,7 @@
 <%= render "home/header" %>
 
-<main>
-  <section>
+<main class="container">
+  <section class="grid">
     <% produtos.each do |produto| %>
       <%= render "produto", produto: %>
     <% end %>

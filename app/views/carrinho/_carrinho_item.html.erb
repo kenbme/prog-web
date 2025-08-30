@@ -4,9 +4,7 @@
       <div>
         <% imagem = carrinho_item.produto.imagens.first %>
         <figure>
-          <%= image_tag imagem,
-          width: 150,
-          alt: "Imagem do produto #{carrinho_item.produto.nome}" %>
+          <%= image_tag imagem, alt: "Imagem do produto #{carrinho_item.produto.nome}" %>
         </figure>
       </div>
     </section>

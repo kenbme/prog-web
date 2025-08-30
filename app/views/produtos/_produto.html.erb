@@ -1,11 +1,9 @@
 <article>
   <% if produto.imagens.attached? %>
     <section>
-      <div>
+      <div class="scroll-container">
         <% produto.imagens.each do |imagem| %>
-          <figure>
-            <%= image_tag imagem, width: 150, alt: "Imagem do produto #{produto.nome}" %>
-          </figure>
+          <%= image_tag imagem, alt: "Imagem do produto #{produto.nome}" %>
         <% end %>
       </div>
     </section>
@@ -42,7 +40,8 @@
         Nenhuma tag
       <% end %>
     </dd>
-
+  </dl>
+  <section>
     <button
       data-controller="carrinho"
       data-action="click->carrinho#add_to_carrinho"
@@ -52,5 +51,5 @@
     >
       Adicionar ao carrinho
     </button>
-  </dl>
+  </section>
 </article>

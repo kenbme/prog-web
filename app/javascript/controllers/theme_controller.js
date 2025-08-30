@@ -6,7 +6,9 @@ export default class extends Controller {
     if (stored_theme) {
       this._set_theme(stored_theme)
     } else {
-      const is_dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+      const is_dark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
       const initial_theme = is_dark ? "dark" : "light"
       this._set_theme(initial_theme)
     }

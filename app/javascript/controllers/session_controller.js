@@ -25,14 +25,14 @@ const send_post_request = (url, msg) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content
-    }
+      "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content,
+    },
   })
-  .then(response => response.json())
-  .then(data => {
-    alert(msg)
-  })
-  .catch(error => {
-    console.error(error)
-  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert(msg)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }

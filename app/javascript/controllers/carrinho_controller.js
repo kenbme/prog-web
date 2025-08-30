@@ -8,23 +8,43 @@ export default class extends Controller {
 
     const body = JSON.stringify({
       produto_id: produto_id,
-      quantidade: quantidade
+      quantidade: quantidade,
     })
 
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content
+        "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content,
       },
-      body: body
+      body: body,
     })
-    .then(response => response.json())
-    .then(data => {
-      alert("Produto adicionado!")
+      .then((response) => response.json())
+      .then((data) => {
+        alert("Produto adicionado!")
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  clean_carrinho(event) {
+    const url = event.target.getAttribute("data-url")
+
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content,
+      },
     })
-    .catch(error => {
-      console.error(error)
-    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert("Carrinho limpo!")
+        window.location.reload()
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 }

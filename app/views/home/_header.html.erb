@@ -1,4 +1,4 @@
-<header>
+<header class="container">
   <h1>Mercado Online</h1>
   <nav>
     <ul>
@@ -11,13 +11,10 @@
   </nav>
 
   <% if current_page?(:root) %>
-    <div>
+    <div class="grid" data-controller="session">
       <button data-action="click->theme#change_theme">
         Trocar tema
       </button>
-    </div>
-
-    <div data-controller="session">
       <button
         data-action="click->session#login_cliente"
         data-url="<%= url_for :login_cliente %>"

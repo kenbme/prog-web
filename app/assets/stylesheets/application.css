@@ -9,10 +9,11 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
-header, main, footer {
-  padding: 10px
-}
-
 .hidden {
   visibility: hidden;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: scroll;
 }
