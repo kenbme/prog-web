@@ -22,9 +22,9 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordInvalid, with: :handle_record_invalid
 
   def current_user
-    @usuario ||= Usuario.find_by(id: session[:usuario_id])
-    raise UsuarioNaoLogadoError unless @usuario
+    @current_user ||= Usuario.find_by(id: session[:usuario_id])
+    raise UsuarioNaoLogadoError unless @current_user
 
-    @usuario
+    @current_user
   end
 end
