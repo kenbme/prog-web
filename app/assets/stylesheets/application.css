@@ -12,3 +12,7 @@
 header, main, footer {
   padding: 10px
 }
+
+.hidden {
+  visibility: hidden;
+}

@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", :as => :rails_health_check
 
   root "home#index", as: :root
-  post "login-cliente" => "home#login_cliente", :as => :login_cliente
-  post "login-admin" => "home#login_admin", :as => :login_admin
-  post "logout" => "home#logout", :as => :logout
+  post "login-cliente" => "session#login_cliente", :as => :login_cliente
+  post "login-admin" => "session#login_admin", :as => :login_admin
+  post "logout" => "session#logout", :as => :logout
 
   get "contato" => "home#contato", :as => :contato
   get "carrinho" => "home#carrinho", :as => :carrinho

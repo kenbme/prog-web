@@ -11,32 +11,28 @@
   </nav>
 
   <% if current_page?(:root) %>
-    <button id="change-theme">Trocar tema</button>
-    <%= button_to "Login como Cliente", :login_cliente, method: :post %>
-    <%= button_to "Login como Admin", :login_admin, method: :post %>
-    <%= button_to "Logout", :logout, method: :post %>
+    <div>
+      <button data-action="click->theme#change_theme">
+        Trocar tema
+      </button>
+    </div>
+
+    <div data-controller="session">
+      <button
+        data-action="click->session#login_cliente"
+        data-url="<%= url_for :login_cliente %>"
+      >
+        Login como Cliente
+      </button>
+      <button
+        data-action="click->session#login_admin"
+        data-url="<%= url_for :login_admin %>"
+      >
+        Login como Admin
+      </button>
+      <button data-action="click->session#logout" data-url="<%= url_for :logout %>">
+        Logout
+      </button>
+    </div>
   <% end %>
 </header>
-
-<script>
-  const html = document.documentElement
-
-  const theme = localStorage.getItem("data-theme")
-  if(theme) {
-    html.setAttribute("data-theme", theme)
-  }
-
-  const button = document.getElementById("change-theme")
-  if (button) {
-    button.addEventListener("click", () => {
-      const theme = html.getAttribute("data-theme")
-      if (theme == "dark") {
-        html.setAttribute("data-theme", "light")
-        localStorage.setItem("data-theme", "light")
-      } else {
-        html.setAttribute("data-theme", "dark")
-        localStorage.setItem("data-theme", "dark")
-      }
-    })
-  }
-</script>

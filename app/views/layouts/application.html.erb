@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="light">
+<html>
   <head>
     <title><%= content_for(:title) || "Prog Web" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -18,12 +18,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="hidden" data-controller="theme">
     <%= yield %>
 
     <% if flash[:alert] %>
       <script>
-        alert("<%= j flash[:alert] %>");
+        alert("<%= j flash[:alert] %>")
       </script>
     <% end %>
   </body>

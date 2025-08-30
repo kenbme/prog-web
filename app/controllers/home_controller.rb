@@ -1,16 +1,4 @@
 class HomeController < ApplicationController
-  def login_cliente
-    session[:usuario_id] = Usuario.find_by!(cargo: "cliente").id
-  end
-
-  def login_admin
-    session[:usuario_id] = Usuario.find_by!(cargo: "admin").id
-  end
-
-  def logout
-    session[:usuario_id] = nil
-  end
-
   def carrinho
     raise ForbiddenError unless current_user.cliente?
 
