@@ -1,4 +1,11 @@
 class CarrinhoController < ApplicationController
+  def index
+    raise ForbiddenError unless current_user.cliente?
+
+    carrinho = Carrinho.find_by!(usuario: current_user)
+    render "index", locals: {carrinho:}
+  end
+
   def add_to_carrinho
     raise ForbiddenError unless current_user.cliente?
 

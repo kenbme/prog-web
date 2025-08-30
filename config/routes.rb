@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   post "logout" => "session#logout", :as => :logout
 
   get "contato" => "home#contato", :as => :contato
-  get "carrinho" => "home#carrinho", :as => :carrinho
   get "minha-conta" => "home#minha_conta", :as => :minha_conta
 
   get "produtos" => "produtos#index", :as => :produtos
 
+  get "carrinho" => "carrinho#index", :as => :carrinho
   post "carrinho/adicionar-ao-carrinho" => "carrinho#add_to_carrinho", :as => :add_to_carrinho
   delete "carrinho/limpar-carrinho" => "carrinho#clean_carrinho", :as => :clean_carrinho
 end
