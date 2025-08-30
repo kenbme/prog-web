@@ -15,5 +15,5 @@
 
 .scroll-container {
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
