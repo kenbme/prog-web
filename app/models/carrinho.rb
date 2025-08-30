@@ -2,13 +2,11 @@ class Carrinho < ApplicationRecord
   self.table_name = "carrinhos"
 
   belongs_to :usuario
-  has_many :carrinho_itens, dependent: :destroy, class_name: "CarrinhoItem"
-  has_many :produtos, through: :carrinho_itens
+  has_many :itens, dependent: :destroy, class_name: "CarrinhoItem"
+  has_many :produtos, through: :itens
 
   validates :usuario_id, uniqueness: true
   validate :usuario_must_be_cliente
-
-  alias_method :itens, :carrinho_itens
 
   private
 

@@ -1,11 +1,21 @@
 <%= render "header" %>
 
 <main>
-
   <% carrinho.itens.each  do |carrinho_item| %>
     <%= render "carrinho_item", carrinho_item: %>
   <% end %>
 
+  <% if carrinho.itens.any? %>
+    <% total_preco = carrinho.itens.sum { it.produto.preco * it.quantidade } %>
+    <p><strong>Total:
+      </strong>
+      R$
+      <%= format_preco(total_preco) %></p>
+
+    <%= button_to "Limpar carrinho", :clean_carrinho, method: :delete %>
+  <% else %>
+    <p>Seu carrinho está vazio.</p>
+  <% end %>
 </main>
 
 <%= render "footer" %>

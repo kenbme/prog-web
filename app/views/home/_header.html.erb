@@ -2,15 +2,15 @@
   <h1>Mercado Online</h1>
   <nav>
     <ul>
-      <li><a href="/">Início</a></li>
-      <li><a href="/produtos">Produtos</a></li>
-      <li><a href="/carrinho">Carrinho</a></li>
-      <li><a href="/minha-conta">Minha Conta</a></li>
-      <li><a href="/contato">Contato</a></li>
+      <li><%= link_to "Início", :root %></li>
+      <li><%= link_to "Produtos", :produtos %></li>
+      <li><%= link_to "Carrinho", :carrinho %></li>
+      <li><%= link_to "Minha Conta", :minha_conta %></li>
+      <li><%= link_to "Contato", :contato %></li>
     </ul>
   </nav>
 
-  <% if current_page?(root_path) %>
+  <% if current_page?(:root) %>
     <button id="change-theme">Trocar tema</button>
     <%= button_to "Login como Cliente", :login_cliente, method: :post %>
     <%= button_to "Login como Admin", :login_admin, method: :post %>

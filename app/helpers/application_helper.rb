@@ -5,4 +5,8 @@ module ApplicationHelper
     cents = preco_str[-2..]
     "#{reais},#{cents}"
   end
+
+  def format_date(date)
+    date.strftime("%d/%m/%Y")
+  end
 end

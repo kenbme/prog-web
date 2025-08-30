@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", :as => :rails_health_check
 
-  root "home#index"
-  post "login_cliente", to: "home#login_cliente", as: :login_cliente
-  post "login_admin", to: "home#login_admin", as: :login_admin
-  post "logout", to: "home#logout", as: :logout
+  root "home#index", as: :root
+  post "login-cliente" => "home#login_cliente", :as => :login_cliente
+  post "login-admin" => "home#login_admin", :as => :login_admin
+  post "logout" => "home#logout", :as => :logout
 
-  get "contato" => "home#contato"
-  get "carrinho" => "home#carrinho"
-  get "minha-conta" => "home#minha_conta"
+  get "contato" => "home#contato", :as => :contato
+  get "carrinho" => "home#carrinho", :as => :carrinho
+  get "minha-conta" => "home#minha_conta", :as => :minha_conta
 
-  get "produtos" => "produtos#index"
+  get "produtos" => "produtos#index", :as => :produtos
+
+  post "carrinho/adicionar-ao-carrinho" => "carrinho#add_to_carrinho", :as => :add_to_carrinho
+  delete "carrinho/limpar-carrinho" => "carrinho#clean_carrinho", :as => :clean_carrinho
 end

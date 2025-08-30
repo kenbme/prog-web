@@ -7,10 +7,10 @@ class Usuario < ApplicationRecord
   validates :cargo, presence: true, inclusion: {in: CARGOS_PERMITIDOS}
 
   def admin?
-    @cargo == "admin"
+    cargo == "admin"
   end
 
   def cliente?
-    @cargo == "cliente"
+    cargo == "cliente"
   end
 end

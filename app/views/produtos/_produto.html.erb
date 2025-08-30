@@ -24,8 +24,7 @@
       <%= format_preco(produto.preco) %></dd>
 
     <dt>Estoque:</dt>
-    <dd><%= produto.estoque %>
-      unidades</dd>
+    <dd><%= produto.estoque %> <%= "unidade".pluralize(produto.estoque) %></dd>
 
     <dt>Categoria:</dt>
     <dd><%= produto.categoria.nome %></dd>
@@ -42,5 +41,14 @@
         Nenhuma tag
       <% end %>
     </dd>
+
+    <%= button_to "Adicionar ao carrinho",
+    :add_to_carrinho,
+    method: :post,
+    params: {
+      produto_id: produto.id,
+      quantidade: 1,
+    },
+    remote: true %>
   </dl>
 </article>

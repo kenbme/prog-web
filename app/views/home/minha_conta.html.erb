@@ -9,8 +9,10 @@
     <ul>
       <li><strong>Nome:</strong>
         <%= usuario.nome %></li>
+      <li><strong>Cargo:</strong>
+        <%= usuario.cargo.capitalize %></li>
       <li><strong>Data de cadastro:</strong>
-        <%= usuario.created_at.strftime("%d/%m/%Y") %></li>
+        <%= format_date(usuario.created_at) %></li>
     </ul>
   </section>
 </main>
