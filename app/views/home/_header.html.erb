@@ -2,11 +2,6 @@
   <h1>Mercado Online</h1>
 
   <nav class="grid">
-    <% if current_page?(:root) %>
-      <div data-controller="session">
-        <span data-session-target="hello"></span>
-      </div>
-    <% end %>
     <ul>
       <li><%= link_to "Início", :root %></li>
       <li><%= link_to "Produtos", :produtos %></li>
@@ -14,6 +9,11 @@
       <li><%= link_to "Perfil", :perfil %></li>
       <li><%= link_to "Contato", :contato %></li>
     </ul>
+    <% if current_page?(:root) %>
+      <ul data-controller="session">
+        <li data-session-target="hello"></li>
+      </ul>
+    <% end %>
   </nav>
 
   <% if current_page?(:root) %>

@@ -1,9 +1,33 @@
 <%= render "home/header" %>
 
 <main class="container">
+  <form action="<%= url_for :produtos %>" method="get">
+    <div>
+      <label for="categoria">Categoria</label>
+      <input
+        type="text"
+        name="categoria"
+        id="categoria"
+        value="<%= params[:categoria] %>"
+      />
+    </div>
+
+    <div>
+      <label for="tags">Tags (separe por vírgula)</label>
+      <input type="text" name="tags" id="tags" value="<%= params[:tags] %>"/>
+    </div>
+
+    <div>
+      <button type="submit">Filtrar</button>
+    </div>
+  </form>
+
   <section class="grid">
     <% produtos.each do |produto| %>
-      <%= render "produto", produto: %>
+      <%= render "produto", produto: produto %>
+    <% end %>
+    <% if produtos.empty? %>
+      <p>Nenhum produto encontrado.</p>
     <% end %>
   </section>
 </main>
