@@ -10,4 +10,5 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+RUN rails db:prepare
+CMD ["bash", "-c", "rails db:prepare && rails server -b 0.0.0.0 -p 3000"]
