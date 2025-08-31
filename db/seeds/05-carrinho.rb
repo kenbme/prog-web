@@ -1,5 +1,5 @@
-usuario = Usuario.find_by!(nome: "João")
-carrinho = Carrinho.create!(usuario:)
+cliente = Cliente.first!
+carrinho = Carrinho.create!(cliente:)
 produto = Produto.first!
 produto2 = Produto.second!
 CarrinhoItem.create!(produto:, carrinho:, quantidade: 2)

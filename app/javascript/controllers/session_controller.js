@@ -15,22 +15,22 @@ export default class extends Controller {
   login_cliente(event) {
     event.preventDefault()
     const url = event.target.getAttribute("data-url")
-    this._send_post_request(url, "Logado como Cliente")
+    this._send_post_request(url)
   }
 
   login_admin(event) {
     event.preventDefault()
     const url = event.target.getAttribute("data-url")
-    this._send_post_request(url, "Logado como Admin")
+    this._send_post_request(url)
   }
 
   logout(event) {
     event.preventDefault()
     const url = event.target.getAttribute("data-url")
-    this._send_post_request(url, "Deslogado")
+    this._send_post_request(url)
   }
 
-  _send_post_request(url, msg) {
+  _send_post_request(url) {
     fetch(url, {
       method: "POST",
       headers: {
@@ -45,7 +45,6 @@ export default class extends Controller {
         } else {
           localStorage.setItem("session", null)
         }
-        alert(msg)
         window.location.reload()
       })
       .catch((error) => {

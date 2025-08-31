@@ -1,10 +1,10 @@
 class Usuario < ApplicationRecord
   self.table_name = "usuarios"
 
-  CARGOS_PERMITIDOS = ["admin", "cliente"]
+  VALID_CARGOS = ["admin", "cliente"]
 
   validates :nome, presence: true
-  validates :cargo, presence: true, inclusion: {in: CARGOS_PERMITIDOS}
+  validates :cargo, presence: true, inclusion: {in: VALID_CARGOS}
 
   def admin?
     cargo == "admin"

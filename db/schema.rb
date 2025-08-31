@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_29_203959) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_31_172157) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,10 +51,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_29_203959) do
   end
 
   create_table "carrinhos", force: :cascade do |t|
-    t.integer "usuario_id", null: false
+    t.integer "cliente_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["usuario_id"], name: "index_carrinhos_on_usuario_id"
+    t.index ["cliente_id"], name: "index_carrinhos_on_cliente_id", unique: true
   end
 
   create_table "categorias", force: :cascade do |t|
@@ -62,6 +62,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_29_203959) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nome"], name: "index_categorias_on_nome", unique: true
+  end
+
+  create_table "clientes", force: :cascade do |t|
+    t.integer "usuario_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_clientes_on_usuario_id", unique: true
   end
 
   create_table "produtos", force: :cascade do |t|
@@ -97,7 +104,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_29_203959) do
     t.string "cargo", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cargo"], name: "index_usuarios_on_cargo"
     t.index ["nome"], name: "index_usuarios_on_nome", unique: true
   end
 
@@ -105,7 +111,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_29_203959) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carrinho_itens", "carrinhos"
   add_foreign_key "carrinho_itens", "produtos"
-  add_foreign_key "carrinhos", "usuarios"
+  add_foreign_key "carrinhos", "clientes"
+  add_foreign_key "clientes", "usuarios"
   add_foreign_key "produtos", "categorias"
   add_foreign_key "taggings", "produtos"
   add_foreign_key "taggings", "tags"

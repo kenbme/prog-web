@@ -1,11 +1,9 @@
 class CreateCategorias < ActiveRecord::Migration[8.0]
   def change
     create_table :categorias do |t|
-      t.string :nome, null: false
+      t.string :nome, null: false, index: { unique: true }
 
       t.timestamps
     end
-
-    add_index :categorias, :nome, unique: true
   end
 end

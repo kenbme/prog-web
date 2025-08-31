@@ -40,7 +40,6 @@ export default class extends Controller {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert("Carrinho limpo!")
         window.location.reload()
       })
       .catch((error) => {
