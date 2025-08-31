@@ -9,8 +9,12 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
-.hidden {
+body {
   visibility: hidden;
+}
+
+[data-theme] body {
+  visibility: visible;
 }
 
 .scroll-container {
