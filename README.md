@@ -1,7 +1,6 @@
 # Prog-Web
 
 ## Requisitos
-- Docker
 - Docker Compose
 
 ## Rodando o projeto
