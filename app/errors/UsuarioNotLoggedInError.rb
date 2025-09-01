@@ -1,0 +1,1 @@
+class UsuarioNotLoggedInError < StandardError; end
