@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["hello"]
+  static values = { url: String }
 
   connect() {
     if (this.hasHelloTarget) {
@@ -12,22 +13,16 @@ export default class extends Controller {
     }
   }
 
-  login_cliente(event) {
-    event.preventDefault()
-    const url = event.target.getAttribute("data-url")
-    this._send_post_request(url)
+  login_cliente() {
+    this._send_post_request(this.urlValue)
   }
 
-  login_admin(event) {
-    event.preventDefault()
-    const url = event.target.getAttribute("data-url")
-    this._send_post_request(url)
+  login_admin() {
+    this._send_post_request(this.urlValue)
   }
 
-  logout(event) {
-    event.preventDefault()
-    const url = event.target.getAttribute("data-url")
-    this._send_post_request(url)
+  logout() {
+    this._send_post_request(this.urlValue)
   }
 
   _send_post_request(url) {
@@ -43,7 +38,7 @@ export default class extends Controller {
         if (data.session) {
           localStorage.setItem("session", JSON.stringify(data.session))
         } else {
-          localStorage.setItem("session", null)
+          localStorage.removeItem("session")
         }
         window.location.reload()
       })

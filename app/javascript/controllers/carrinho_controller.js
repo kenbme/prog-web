@@ -1,17 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  add_to_carrinho(event) {
-    const produto_id = event.target.getAttribute("data-produto-id")
-    const quantidade = event.target.getAttribute("data-quantidade")
-    const url = event.target.getAttribute("data-url")
+  static values = { url: String, produtoId: Number, quantidade: Number }
 
+  add_to_carrinho() {
     const body = JSON.stringify({
-      produto_id: produto_id,
-      quantidade: quantidade,
+      produto_id: this.produtoIdValue,
+      quantidade: this.quantidadeValue,
     })
 
-    fetch(url, {
+    fetch(this.urlValue, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,10 +26,8 @@ export default class extends Controller {
       })
   }
 
-  clean_carrinho(event) {
-    const url = event.target.getAttribute("data-url")
-
-    fetch(url, {
+  clean_carrinho() {
+    fetch(this.urlValue, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

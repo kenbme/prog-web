@@ -18,7 +18,7 @@
       <button
         data-controller="carrinho"
         data-action="click->carrinho#clean_carrinho"
-        data-url="<%= url_for :clean_carrinho %>"
+        data-carrinho-url-value="<%= url_for :clean_carrinho %>"
       >Limpar carrinho</button>
     <% else %>
       <p>Seu carrinho está vazio.</p>

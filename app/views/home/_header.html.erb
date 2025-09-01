@@ -10,30 +10,36 @@
       <li><%= link_to "Contato", :contato %></li>
     </ul>
     <% if current_page?(:root) %>
-      <ul data-controller="session">
-        <li data-session-target="hello"></li>
+      <ul>
+        <li data-controller="session" data-session-target="hello"></li>
       </ul>
     <% end %>
   </nav>
 
   <% if current_page?(:root) %>
-    <div class="grid" data-controller="theme session">
-      <button data-action="click->theme#change_theme">
+    <div class="grid">
+      <button data-controller="theme" data-action="click->theme#change_theme">
         Trocar tema
       </button>
       <button
+        data-controller="session"
         data-action="click->session#login_cliente"
-        data-url="<%= url_for :login_cliente %>"
+        data-session-url-value="<%= url_for :login_cliente %>"
       >
         Login como Cliente
       </button>
       <button
+        data-controller="session"
         data-action="click->session#login_admin"
-        data-url="<%= url_for :login_admin %>"
+        data-session-url-value="<%= url_for :login_admin %>"
       >
         Login como Admin
       </button>
-      <button data-action="click->session#logout" data-url="<%= url_for :logout %>">
+      <button
+        data-controller="session"
+        data-action="click->session#logout"
+        data-session-url-value="<%= url_for :logout %>"
+      >
         Logout
       </button>
     </div>

@@ -45,9 +45,9 @@
     <button
       data-controller="carrinho"
       data-action="click->carrinho#add_to_carrinho"
-      data-produto-id="<%= produto.id %>"
-      data-quantidade="1"
-      data-url="<%= url_for :add_to_carrinho %>"
+      data-carrinho-produto-id-value="<%= produto.id %>"
+      data-carrinho-quantidade-value="1"
+      data-carrinho-url-value="<%= url_for :add_to_carrinho %>"
     >
       Adicionar ao carrinho
     </button>
