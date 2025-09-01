@@ -1,4 +1,2 @@
-usuario = Usuario.create!(nome: "João", cargo: "cliente")
-Usuario.create!(nome: "Admin", cargo: "admin")
-
-Cliente.create!(usuario:)
+Admin.create!(usuario: Usuario.new(nome: "Admin", cargo: :admin))
+Cliente.create!(usuario: Usuario.new(nome: "João", cargo: :cliente))

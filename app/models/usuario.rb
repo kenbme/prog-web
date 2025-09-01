@@ -1,16 +1,8 @@
 class Usuario < ApplicationRecord
   self.table_name = "usuarios"
 
-  VALID_CARGOS = ["admin", "cliente"]
+  enum :cargo, { cliente: 0, admin: 1 }
 
   validates :nome, presence: true
-  validates :cargo, presence: true, inclusion: {in: VALID_CARGOS}
-
-  def admin?
-    cargo == "admin"
-  end
-
-  def cliente?
-    cargo == "cliente"
-  end
+  validates :cargo, presence: true
 end
