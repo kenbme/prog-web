@@ -9,11 +9,8 @@
     </div>
 
     <% if carrinho.itens.any? %>
-      <% total_preco = carrinho.itens.sum { it.produto.preco * it.quantidade } %>
-      <p><strong>Total:
-        </strong>
-        R$
-        <%= format_preco(total_preco) %></p>
+      <p><strong>Total:</strong>R$
+        <%= format_preco(carrinho.preco_total) %></p>
 
       <button
         data-controller="compras"
