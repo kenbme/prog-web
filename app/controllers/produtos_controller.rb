@@ -6,6 +6,6 @@ class ProdutosController < ApplicationController
     produtos = produtos.per_categoria(params[:categoria]) if params[:categoria].present?
     produtos = produtos.per_tags(params[:tags].split(",")) if params[:tags].present?
 
-    render "index", locals: {produtos:}
+    render "index", locals: {produtos:}, status: :ok
   end
 end

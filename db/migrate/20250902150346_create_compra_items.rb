@@ -1,0 +1,12 @@
+class CreateCompraItems < ActiveRecord::Migration[8.0]
+  def change
+    create_table :compra_itens do |t|
+      t.references :compra, null: false, foreign_key: true
+      t.references :produto, null: false, foreign_key: true
+      t.integer :quantidade, null: false
+      t.integer :preco, null: false
+
+      t.timestamps
+    end
+  end
+end

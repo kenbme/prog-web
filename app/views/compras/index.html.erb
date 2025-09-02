@@ -1,0 +1,15 @@
+<%= render "home/header" %>
+
+<main class="container">
+  <section class="grid">
+    <% if compras.any? %>
+      <% compras.each do |compra| %>
+        <%= render "compra", compra: %>
+      <% end %>
+    <% else %>
+      <p>Parece que você ainda não comprou nada por aqui. Vamos mudar isso? 🛍️</p>
+    <% end %>
+  </section>
+</main>
+
+<%= render "home/footer" %>

@@ -1,0 +1,29 @@
+<%= render "home/header" %>
+
+<main class="container">
+  <article>
+    <h1>Compra #<%= compra.id %></h1>
+    <h2>Status:
+      <%= compra.status %></h2>
+
+    <% compra.itens.each do |item| %>
+      <section class="card">
+        <p><strong>Nome:</strong>
+          <%= item.produto.nome %></p>
+        <p><strong>Quantidade:</strong>
+          <%= item.quantidade %></p>
+        <p><strong>Preço unitário:</strong>
+          <%= format_preco(item.preco) %></p>
+        <p><strong>Total do item:</strong>
+          <%= format_preco(item.preco_total) %></p>
+      </section>
+    <% end %>
+
+    <hr>
+
+    <h3>Total da compra:
+      <%= format_preco(compra.preco_total) %></h3>
+  </article>
+</main>
+
+<%= render "home/footer" %>

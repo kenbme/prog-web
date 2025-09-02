@@ -5,4 +5,5 @@ class CarrinhoItem < ApplicationRecord
   belongs_to :produto
 
   validates :produto_id, uniqueness: {scope: :carrinho_id}
+  validates :quantidade, numericality: {greater_than: 0}
 end

@@ -1,0 +1,8 @@
+<article>
+  <h1>Compra #<%= compra.id %></h1>
+  <h2>Status:
+    <%= compra.status %></h2>
+  <h3>Total da compra:
+    <%= format_preco(compra.preco_total) %></h3>
+  <%= link_to "Ver compra", compra_path(compra.id) %>
+</article>

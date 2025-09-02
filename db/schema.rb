@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_01_135656) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_02_150346) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,6 +78,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_135656) do
     t.index ["usuario_id"], name: "index_clientes_on_usuario_id", unique: true
   end
 
+  create_table "compra_itens", force: :cascade do |t|
+    t.integer "compra_id", null: false
+    t.integer "produto_id", null: false
+    t.integer "quantidade", null: false
+    t.integer "preco", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["compra_id"], name: "index_compra_itens_on_compra_id"
+    t.index ["produto_id"], name: "index_compra_itens_on_produto_id"
+  end
+
+  create_table "compras", force: :cascade do |t|
+    t.integer "carrinho_id", null: false
+    t.integer "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carrinho_id"], name: "index_compras_on_carrinho_id"
+  end
+
   create_table "produtos", force: :cascade do |t|
     t.string "nome", null: false
     t.string "descricao", null: false
@@ -121,6 +140,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_135656) do
   add_foreign_key "carrinho_itens", "produtos"
   add_foreign_key "carrinhos", "clientes"
   add_foreign_key "clientes", "usuarios"
+  add_foreign_key "compra_itens", "compras"
+  add_foreign_key "compra_itens", "produtos"
+  add_foreign_key "compras", "carrinhos"
   add_foreign_key "produtos", "categorias"
   add_foreign_key "taggings", "produtos"
   add_foreign_key "taggings", "tags"
