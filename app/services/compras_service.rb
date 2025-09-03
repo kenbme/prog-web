@@ -16,10 +16,9 @@ class ComprasService
 
       produtos = carrinho.itens.map do |item|
         item.produto.estoque -= item.quantidade
-        raise StandardError unless item.produto.valid?
         item.produto
       end
-      Produto.import(produtos, on_duplicate_key_update: [:estoque])
+      Produto.import!(produtos, on_duplicate_key_update: [:estoque])
 
       carrinho.itens.destroy_all
       compra
