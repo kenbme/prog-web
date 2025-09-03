@@ -27,7 +27,7 @@ class ComprasService
     end
 
     def decrement_estoque!(carrinho:)
-      sql = <<~SQL
+      sql = <<~SQL.squish
         UPDATE produtos
         SET estoque = produtos.estoque - carrinho_itens.quantidade
         FROM carrinho_itens
