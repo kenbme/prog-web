@@ -16,7 +16,7 @@ class ComprasController < ApplicationController
   def create
     raise ForbiddenError unless current_user.cliente?
 
-    carrinho = Carrinho.per_usuario(usuario_id).first!
+    carrinho = Carrinho.per_usuario(current_user.id).first!
     ComprasService.create(carrinho:)
     render json: {}, status: :ok
   end
