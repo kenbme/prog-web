@@ -24,10 +24,23 @@ class ComprasService
   end
 
   def self.decrement_estoque!(itens:)
-    produtos = itens.map do |item|
-      item.produto.estoque -= item.quantidade
-      item.produto
+    ActiveRecord::Base.transaction do
+      ids = itens.map(&:produto_id)
+      itens.map(&:quantidade)
+
+      cases_sql = itens.map { |item| "WHEN id = #{item.produto_id} THEN estoque - #{item.quantidade}" }.join(" ")
+      conditions_sql = itens.map { |item| "(id = #{item.produto_id} AND estoque >= #{item.quantidade})" }.join(" OR ")
+
+      sql = <<~SQL
+        UPDATE produtos
+        SET estoque = CASE #{cases_sql} END
+        WHERE id IN (#{ids.join(",")})
+          AND (#{conditions_sql})
+      SQL
+
+      rows = ActiveRecord::Base.connection.update(sql)
+
+      raise "Estoque insuficiente para algum produto" if rows != itens.size
     end
-    Produto.import!(produtos, on_duplicate_key_update: [:estoque])
   end
 end
