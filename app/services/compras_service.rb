@@ -5,7 +5,7 @@ class ComprasService
     ActiveRecord::Base.transaction do
       compra = Compra.create!(carrinho:, status: :pendente)
       create_compra_itens!(compra:, itens: carrinho.itens)
-      decrement_estoque!(itens: carrinho.itens)
+      decrement_estoque!(carrinho:)
       carrinho.itens.destroy_all
       compra
     end
@@ -23,21 +23,26 @@ class ComprasService
     CompraItem.create!(itens_data)
   end
 
-  def self.decrement_estoque!(itens:)
+  def self.decrement_estoque!(carrinho:)
     ActiveRecord::Base.transaction do
-      ids = itens.map(&:produto_id)
-
-      cases_sql = itens.map { |item| "WHEN id = #{item.produto_id} THEN estoque - #{item.quantidade}" }.join(" ")
-      conditions_sql = itens.map { |item| "(id = #{item.produto_id} AND estoque >= #{item.quantidade})" }.join(" OR ")
       sql = <<~SQL
         UPDATE produtos
-        SET estoque = CASE #{cases_sql} END
-        WHERE id IN (#{ids.join(",")})
-          AND (#{conditions_sql})
+        SET estoque = estoque - (
+          SELECT quantidade
+          FROM carrinho_itens
+          WHERE carrinho_itens.produto_id = produtos.id
+            AND carrinho_itens.carrinho_id = #{carrinho.id}
+        )
+        WHERE id IN (
+          SELECT produto_id
+          FROM carrinho_itens
+          WHERE carrinho_id = #{carrinho.id}
+            AND estoque >= quantidade
+        )
       SQL
 
       rows = ActiveRecord::Base.connection.update(sql)
-      raise InsufficientEstoqueError if rows != itens.size
+      raise InsufficientEstoqueError if rows != carrinho.itens.count
     end
   end
 end
