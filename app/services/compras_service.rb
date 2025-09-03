@@ -1,17 +1,26 @@
 class ComprasService
-  def self.create(usuario_id)
+  def self.create(carrinho:)
     ActiveRecord::Base.transaction do
-      carrinho = Carrinho.per_usuario(usuario_id).first!
       compra = Compra.create!(carrinho:, status: :pendente)
-      carrinho.itens.each do |item|
-        CompraItem.create!(
+      itens_data = carrinho.itens.map do |item|
+        {
           compra: compra,
           produto: item.produto,
           quantidade: item.quantidade,
           preco: item.produto.preco
-        )
-        item.produto.decrement!(:estoque, item.quantidade)
+        }
       end
+      raise Exception if itens_data.empty?
+
+      CompraItem.create!(itens_data)
+
+      produtos = carrinho.itens.map do |item|
+        item.produto.estoque -= item.quantidade
+        raise Exception unless item.produto.valid?
+        item.produto
+      end
+      Produto.import produtos, on_duplicate_key_update: [:estoque]
+
       carrinho.itens.destroy_all
       compra
     end
