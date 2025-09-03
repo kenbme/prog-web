@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <script>
-      const stored_theme = localStorage.getItem("data-theme")
+      const stored_theme = sessionStorage.getItem("data-theme")
       if (stored_theme) {
         document.documentElement.setAttribute("data-theme", stored_theme)
       } else {

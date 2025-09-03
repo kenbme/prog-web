@@ -9,6 +9,6 @@ export default class extends Controller {
 
   _set_theme(theme) {
     document.documentElement.setAttribute("data-theme", theme)
-    localStorage.setItem("data-theme", theme)
+    sessionStorage.setItem("data-theme", theme)
   }
 }

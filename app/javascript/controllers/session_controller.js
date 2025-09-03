@@ -6,7 +6,7 @@ export default class extends Controller {
 
   connect() {
     if (this.hasHelloTarget) {
-      const session = JSON.parse(localStorage.getItem("session"))
+      const session = JSON.parse(sessionStorage.getItem("session"))
       if (session) {
         this.helloTarget.textContent = `Olá, ${session.usuario.nome}!`
       }
@@ -36,9 +36,9 @@ export default class extends Controller {
       .then((response) => response.json())
       .then((data) => {
         if (data.session) {
-          localStorage.setItem("session", JSON.stringify(data.session))
+          sessionStorage.setItem("session", JSON.stringify(data.session))
         } else {
-          localStorage.removeItem("session")
+          sessionStorage.removeItem("session")
         }
         window.location.reload()
       })
