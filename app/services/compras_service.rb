@@ -31,12 +31,12 @@ class ComprasService
         UPDATE produtos
         SET estoque = produtos.estoque - carrinho_itens.quantidade
         FROM carrinho_itens
-        WHERE carrinho_itens.carrinho_id = #{carrinho.id}
+        WHERE carrinho_itens.carrinho_id = $1
           AND carrinho_itens.produto_id = produtos.id
           AND produtos.estoque >= carrinho_itens.quantidade
       SQL
 
-      rows = ActiveRecord::Base.connection.update(sql)
+      rows = ActiveRecord::Base.connection.exec_update(sql, "decrement_estoque!", [carrinho.id])
       raise InsufficientEstoqueError if rows != carrinho.itens.count
     end
   end
