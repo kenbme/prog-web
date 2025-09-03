@@ -1,30 +1,32 @@
 class ComprasService
-  def self.create(carrinho:)
-    raise EmptyCarrinhoError if carrinho.itens.empty?
+  class << self
+    def create(carrinho:)
+      raise EmptyCarrinhoError if carrinho.itens.empty?
 
-    ActiveRecord::Base.transaction do
-      compra = Compra.create!(carrinho:, status: :pendente)
-      create_compra_itens!(compra:, itens: carrinho.itens)
-      decrement_estoque!(carrinho:)
-      carrinho.itens.destroy_all
-      compra
+      ActiveRecord::Base.transaction do
+        compra = Compra.create!(carrinho:, status: :pendente)
+        create_compra_itens!(compra:, itens: carrinho.itens)
+        decrement_estoque!(carrinho:)
+        carrinho.itens.destroy_all
+        compra
+      end
     end
-  end
 
-  def self.create_compra_itens!(compra:, itens:)
-    itens_data = itens.map do |item|
-      {
-        compra: compra,
-        produto: item.produto,
-        quantidade: item.quantidade,
-        preco: item.produto.preco
-      }
+    private
+
+    def create_compra_itens!(compra:, itens:)
+      itens_data = itens.map do |item|
+        {
+          compra: compra,
+          produto: item.produto,
+          quantidade: item.quantidade,
+          preco: item.produto.preco
+        }
+      end
+      CompraItem.create!(itens_data)
     end
-    CompraItem.create!(itens_data)
-  end
 
-  def self.decrement_estoque!(carrinho:)
-    ActiveRecord::Base.transaction do
+    def decrement_estoque!(carrinho:)
       sql = <<~SQL
         UPDATE produtos
         SET estoque = produtos.estoque - carrinho_itens.quantidade
