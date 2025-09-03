@@ -10,16 +10,16 @@ class ComprasService
           preco: item.produto.preco
         }
       end
-      raise Exception if itens_data.empty?
+      raise StandardError if itens_data.empty?
 
       CompraItem.create!(itens_data)
 
       produtos = carrinho.itens.map do |item|
         item.produto.estoque -= item.quantidade
-        raise Exception unless item.produto.valid?
+        raise StandardError unless item.produto.valid?
         item.produto
       end
-      Produto.import produtos, on_duplicate_key_update: [:estoque]
+      Produto.import(produtos, on_duplicate_key_update: [:estoque])
 
       carrinho.itens.destroy_all
       compra
