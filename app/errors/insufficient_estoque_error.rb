@@ -1,0 +1,1 @@
+class InsufficientEstoqueError < StandardError; end
