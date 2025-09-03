@@ -27,18 +27,11 @@ class ComprasService
     ActiveRecord::Base.transaction do
       sql = <<~SQL
         UPDATE produtos
-        SET estoque = estoque - (
-          SELECT quantidade
-          FROM carrinho_itens
-          WHERE carrinho_itens.produto_id = produtos.id
-            AND carrinho_itens.carrinho_id = #{carrinho.id}
-        )
-        WHERE id IN (
-          SELECT produto_id
-          FROM carrinho_itens
-          WHERE carrinho_id = #{carrinho.id}
-            AND estoque >= quantidade
-        )
+        SET estoque = produtos.estoque - carrinho_itens.quantidade
+        FROM carrinho_itens
+        WHERE carrinho_itens.carrinho_id = #{carrinho.id}
+          AND carrinho_itens.produto_id = produtos.id
+          AND produtos.estoque >= carrinho_itens.quantidade
       SQL
 
       rows = ActiveRecord::Base.connection.update(sql)
