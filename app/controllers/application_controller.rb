@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_record_invalid(exception)
-    render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
+    render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_content
   end
 end

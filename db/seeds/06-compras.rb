@@ -1,2 +1,2 @@
 carrinho = Carrinho.first!
-ComprasService.create(carrinho:)
+Compras::Create.call(carrinho:)
