@@ -15,6 +15,7 @@ class Compras::Create
     private
 
     def create_compra_itens!(compra:, itens:)
+      compra_item = CompraItem.new
       itens_data = itens.map do |item|
         attrs = {
           compra_id: compra.id,
@@ -22,7 +23,9 @@ class Compras::Create
           quantidade: item.quantidade,
           preco: item.produto.preco
         }
-        validate_fields!(CompraItem.new(attrs), [:quantidade, :preco])
+        compra_item.assign_attributes(attrs)
+        validate_fields!(compra_item, [:quantidade, :preco])
+        compra_item.errors.clear
         attrs
       end
       CompraItem.insert_all!(itens_data)
