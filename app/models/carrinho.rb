@@ -8,6 +8,6 @@ class Carrinho < ApplicationRecord
   scope :per_usuario, ->(usuario_id) { joins(:cliente).where(clientes: {usuario_id:}) }
 
   def preco_total
-    itens.joins(:produto).sum("carrinho_itens.quantidade * produtos.preco")
+    itens.sum { |item| item.quantidade * item.produto.preco }
   end
 end
