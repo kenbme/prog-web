@@ -2,7 +2,7 @@ class CarrinhoController < ApplicationController
   def index
     raise ForbiddenError unless current_user.cliente?
 
-    carrinho = Carrinho.per_usuario(current_user.id).first!
+    carrinho = Carrinho.per_usuario(current_user.id).includes(produtos: [:categoria, :tags, imagens_attachments: :blob]).first!
     render "index", locals: {carrinho:}, status: :ok
   end
 
