@@ -2,14 +2,14 @@ class ComprasController < ApplicationController
   def index
     raise ForbiddenError unless current_user.cliente?
 
-    compras = Compra.per_usuario(current_user.id)
+    compras = Compra.includes(itens: :produto).per_usuario(current_user.id)
     render "index", locals: {compras:}, status: :ok
   end
 
   def show
     raise ForbiddenError unless current_user.cliente?
 
-    compra = Compra.per_usuario(current_user.id).find(params[:id])
+    compra = Compra.includes(itens: :produto).per_usuario(current_user.id).find(params[:id])
     render "show", locals: {compra:}, status: :ok
   end
 
