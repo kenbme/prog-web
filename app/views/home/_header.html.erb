@@ -3,18 +3,18 @@
 
   <nav class="grid">
     <ul>
-      <% if current_user.admin? %>
+      <% if usuario.admin? %>
         <li><%= link_to "Início", :root %></li>
         <li><%= link_to "Perfil", :perfil %></li>
       <% end %>
 
-      <% if current_user.vendedor? %>
+      <% if usuario.vendedor? %>
         <li><%= link_to "Início", :root %></li>
         <li><%= link_to "Produtos", :produtos %></li>
         <li><%= link_to "Perfil", :perfil %></li>
       <% end %>
 
-      <% if current_user.cliente? %>
+      <% if usuario.cliente? %>
         <li><%= link_to "Início", :root %></li>
         <li><%= link_to "Produtos", :produtos %></li>
         <li><%= link_to "Carrinho", :carrinho %></li>

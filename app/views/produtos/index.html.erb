@@ -1,4 +1,4 @@
-<%= render "home/header" %>
+<%= render "home/header", usuario: %>
 
 <main class="container">
   <form action="<%= url_for :produtos %>" method="get">
@@ -23,14 +23,14 @@
   </form>
 
   <section class="grid">
-    <% if current_user.vendedor? %>
+    <% if usuario.vendedor? %>
       <button onclick="window.location.href='<%= new_produto_path %>'">
         Novo Produto
       </button>
     <% end %>
 
     <% produtos.each do |produto| %>
-      <%= render "produto", produto: %>
+      <%= render "produto", produto:, usuario: %>
     <% end %>
     <% if produtos.empty? %>
       <p>Nenhum produto encontrado.</p>
