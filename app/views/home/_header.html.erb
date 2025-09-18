@@ -6,15 +6,13 @@
       <% if usuario.admin? %>
         <li><%= link_to "Início", :root %></li>
         <li><%= link_to "Perfil", :perfil %></li>
-      <% end %>
 
-      <% if usuario.vendedor? %>
+      <% elsif usuario.vendedor? %>
         <li><%= link_to "Início", :root %></li>
         <li><%= link_to "Produtos", :produtos %></li>
         <li><%= link_to "Perfil", :perfil %></li>
-      <% end %>
 
-      <% if usuario.cliente? %>
+      <% elsif usuario.cliente? %>
         <li><%= link_to "Início", :root %></li>
         <li><%= link_to "Produtos", :produtos %></li>
         <li><%= link_to "Carrinho", :carrinho %></li>
@@ -23,11 +21,6 @@
         <li><%= link_to "Contato", :contato %></li>
       <% end %>
     </ul>
-    <% if current_page?(:root) %>
-      <ul>
-        <li data-controller="session" data-session-target="hello"></li>
-      </ul>
-    <% end %>
   </nav>
 
   <% if current_page?(:root) %>

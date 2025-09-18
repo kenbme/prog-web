@@ -1,17 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["hello"]
   static values = { url: String }
-
-  connect() {
-    if (this.hasHelloTarget) {
-      const session = JSON.parse(sessionStorage.getItem("session"))
-      if (session) {
-        this.helloTarget.textContent = `Olá, ${session.usuario.nome}!`
-      }
-    }
-  }
 
   login_cliente() {
     this._send_post_request(this.urlValue)
