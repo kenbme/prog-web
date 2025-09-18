@@ -3,12 +3,25 @@
 
   <nav class="grid">
     <ul>
-      <li><%= link_to "Início", :root %></li>
-      <li><%= link_to "Produtos", :produtos %></li>
-      <li><%= link_to "Carrinho", :carrinho %></li>
-      <li><%= link_to "Compras", :compras %></li>
-      <li><%= link_to "Perfil", :perfil %></li>
-      <li><%= link_to "Contato", :contato %></li>
+      <% if current_user.admin? %>
+        <li><%= link_to "Início", :root %></li>
+        <li><%= link_to "Perfil", :perfil %></li>
+      <% end %>
+
+      <% if current_user.vendedor? %>
+        <li><%= link_to "Início", :root %></li>
+        <li><%= link_to "Produtos", :produtos %></li>
+        <li><%= link_to "Perfil", :perfil %></li>
+      <% end %>
+
+      <% if current_user.cliente? %>
+        <li><%= link_to "Início", :root %></li>
+        <li><%= link_to "Produtos", :produtos %></li>
+        <li><%= link_to "Carrinho", :carrinho %></li>
+        <li><%= link_to "Compras", :compras %></li>
+        <li><%= link_to "Perfil", :perfil %></li>
+        <li><%= link_to "Contato", :contato %></li>
+      <% end %>
     </ul>
     <% if current_page?(:root) %>
       <ul>
@@ -21,27 +34,6 @@
     <div class="grid">
       <button data-controller="theme" data-action="click->theme#change_theme">
         Trocar tema
-      </button>
-      <button
-        data-controller="session"
-        data-action="click->session#login_cliente"
-        data-session-url-value="<%= url_for :login_cliente %>"
-      >
-        Login como Cliente
-      </button>
-      <button
-        data-controller="session"
-        data-action="click->session#login_vendedor"
-        data-session-url-value="<%= url_for :login_vendedor %>"
-      >
-        Login como Vendedor
-      </button>
-      <button
-        data-controller="session"
-        data-action="click->session#login_admin"
-        data-session-url-value="<%= url_for :login_admin %>"
-      >
-        Login como Admin
       </button>
       <button
         data-controller="session"

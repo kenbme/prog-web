@@ -1,0 +1,27 @@
+<main class="container">
+  <div class="grid">
+    <button
+      data-controller="session"
+      data-action="click->session#login_cliente"
+      data-session-url-value="<%= url_for :login_cliente %>"
+    >
+      Login como Cliente
+    </button>
+    <button
+      data-controller="session"
+      data-action="click->session#login_vendedor"
+      data-session-url-value="<%= url_for :login_vendedor %>"
+    >
+      Login como Vendedor
+    </button>
+    <button
+      data-controller="session"
+      data-action="click->session#login_admin"
+      data-session-url-value="<%= url_for :login_admin %>"
+    >
+      Login como Admin
+    </button>
+  </div>
+</main>
+
+<%= render "footer" %>

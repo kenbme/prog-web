@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", :as => :rails_health_check
 
   # Home
-  root "home#index", as: :root
+  root "home#index", :as => :root
+  get "login" => "home#login", :as => :login
   get "contato" => "home#contato", :as => :contato
   get "perfil" => "home#perfil", :as => :perfil
 

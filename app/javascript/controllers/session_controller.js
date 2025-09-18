@@ -41,10 +41,11 @@ export default class extends Controller {
       .then((data) => {
         if (data.session) {
           sessionStorage.setItem("session", JSON.stringify(data.session))
+          window.location.href = "/"
         } else {
           sessionStorage.removeItem("session")
+          window.location.href = "/login"
         }
-        window.location.reload()
       })
       .catch((error) => {
         console.error(error)
