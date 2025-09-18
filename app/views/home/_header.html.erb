@@ -28,13 +28,14 @@
       <button data-controller="theme" data-action="click->theme#change_theme">
         Trocar tema
       </button>
-      <button
-        data-controller="session"
-        data-action="click->session#logout"
-        data-session-url-value="<%= url_for :logout %>"
-      >
-        Logout
-      </button>
+      <form action="<%= url_for :logout %>" method="post">
+        <input
+          type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>"
+        >
+        <button class="secondary" type="submit">Logout</button>
+      </form>
     </div>
   <% end %>
 </header>
