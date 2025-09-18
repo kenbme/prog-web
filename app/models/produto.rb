@@ -2,7 +2,7 @@ class Produto < ApplicationRecord
   self.table_name = "produtos"
 
   belongs_to :categoria
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
   has_many_attached :imagens

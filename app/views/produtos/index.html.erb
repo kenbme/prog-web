@@ -23,6 +23,12 @@
   </form>
 
   <section class="grid">
+    <% if current_user.vendedor? %>
+      <button onclick="window.location.href='<%= new_produto_path %>'">
+        Novo Produto
+      </button>
+    <% end %>
+
     <% produtos.each do |produto| %>
       <%= render "produto", produto: %>
     <% end %>

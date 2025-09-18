@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_02_150346) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_18_164926) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -133,6 +133,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_150346) do
     t.index ["nome"], name: "index_usuarios_on_nome", unique: true
   end
 
+  create_table "vendedores", force: :cascade do |t|
+    t.integer "usuario_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_vendedores_on_usuario_id", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "admins", "usuarios"
@@ -146,4 +153,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_150346) do
   add_foreign_key "produtos", "categorias"
   add_foreign_key "taggings", "produtos"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "vendedores", "usuarios"
 end

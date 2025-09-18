@@ -42,14 +42,22 @@
     </dd>
   </dl>
   <section>
-    <button
-      data-controller="carrinho"
-      data-action="click->carrinho#add_to_carrinho"
-      data-carrinho-produto-id-value="<%= produto.id %>"
-      data-carrinho-quantidade-value="1"
-      data-carrinho-url-value="<%= url_for :add_to_carrinho %>"
-    >
-      Adicionar ao carrinho
-    </button>
+    <% if current_user.cliente? %>
+      <button
+        data-controller="carrinho"
+        data-action="click->carrinho#add_to_carrinho"
+        data-carrinho-produto-id-value="<%= produto.id %>"
+        data-carrinho-quantidade-value="1"
+        data-carrinho-url-value="<%= url_for :add_to_carrinho %>"
+      >
+        Adicionar ao carrinho
+      </button>
+    <% end %>
+
+    <% if current_user.vendedor? %>
+      <button onclick="window.location.href='<%= edit_produto_path(produto) %>'">
+        Editar Produto
+      </button>
+    <% end %>
   </section>
 </article>

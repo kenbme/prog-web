@@ -1,0 +1,78 @@
+<%= render "home/header" %>
+
+<main class="container">
+  <form
+    action="<%= url_for :create_produto %>"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>"
+    >
+
+    <div>
+      <label for="produto_nome">Nome:</label>
+      <input type="text" id="produto_nome" name="produto[nome]" required>
+    </div>
+
+    <div>
+      <label for="produto_descricao">Descrição:</label>
+      <textarea id="produto_descricao" name="produto[descricao]" required></textarea>
+    </div>
+
+    <div>
+      <label for="produto_preco">Preço (em centavos):</label>
+      <input
+        type="number"
+        id="produto_preco"
+        name="produto[preco]"
+        min="100"
+        required
+      >
+    </div>
+
+    <div>
+      <label for="produto_estoque">Estoque:</label>
+      <input
+        type="number"
+        id="produto_estoque"
+        name="produto[estoque]"
+        min="0"
+        required
+      >
+    </div>
+
+    <div>
+      <label for="produto_categoria_id">Categoria:</label>
+      <select id="produto_categoria_id" name="produto[categoria_id]" required>
+        <option value="">Selecione</option>
+        <% categorias.each do |categoria| %>
+          <option value="<%= categoria.id %>"><%= categoria.nome %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div>
+      <p>Tags:</p>
+      <% tags.each do |tag| %>
+        <label>
+          <input type="checkbox" name="produto[tag_ids][]" value="<%= tag.id %>">
+          <%= tag.nome %>
+        </label>
+      <% end %>
+    </div>
+
+    <div>
+      <label for="produto_imagens">Imagens:</label>
+      <input type="file" id="produto_imagens" name="produto[imagens][]" multiple>
+    </div>
+
+    <div>
+      <button type="submit">Criar Produto</button>
+    </div>
+  </form>
+</main>
+
+<%= render "home/footer" %>

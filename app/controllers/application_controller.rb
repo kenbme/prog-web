@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   rescue_from ForbiddenError, with: :handle_forbidden_error
   rescue_from ActiveRecord::RecordInvalid, with: :handle_record_invalid
 
+  helper_method :current_user
+
   def current_user
     @_current_user ||= Usuario.find_by(id: session[:usuario_id])
     raise UsuarioNotLoggedInError unless @_current_user

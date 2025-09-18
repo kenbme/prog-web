@@ -1,0 +1,104 @@
+<%= render "home/header" %>
+
+<main class="container">
+  <form
+    action="<%= update_produto_path(produto) %>"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>"
+    >
+    <input type="hidden" name="_method" value="put">
+
+    <div>
+      <label for="produto_nome">Nome:</label>
+      <input
+        type="text"
+        id="produto_nome"
+        name="produto[nome]"
+        value="<%= produto.nome %>"
+        required
+      >
+    </div>
+
+    <div>
+      <label for="produto_descricao">Descrição:</label>
+      <textarea id="produto_descricao" name="produto[descricao]" required><%= produto.descricao %></textarea>
+    </div>
+
+    <div>
+      <label for="produto_preco">Preço (em centavos):</label>
+      <input
+        type="number"
+        id="produto_preco"
+        name="produto[preco]"
+        min="100"
+        value="<%= produto.preco %>"
+        required
+      >
+    </div>
+
+    <div>
+      <label for="produto_estoque">Estoque:</label>
+      <input
+        type="number"
+        id="produto_estoque"
+        name="produto[estoque]"
+        min="0"
+        value="<%= produto.estoque %>"
+        required
+      >
+    </div>
+
+    <div>
+      <label for="produto_categoria_id">Categoria:</label>
+      <select id="produto_categoria_id" name="produto[categoria_id]" required>
+        <option value="">Selecione</option>
+        <% categorias.each do |categoria| %>
+          <option
+            value="<%= categoria.id %>"
+            <%= "selected" if produto.categoria_id == categoria.id %>
+          ><%= categoria.nome %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div>
+      <p>Tags:</p>
+      <% tags.each do |tag| %>
+        <label>
+          <input
+            type="checkbox"
+            name="produto[tag_ids][]"
+            value="<%= tag.id %>"
+            <%= "checked" if produto.tag_ids.include?(tag.id) %>
+          >
+          <%= tag.nome %>
+        </label>
+      <% end %>
+    </div>
+
+    <div>
+      <button type="submit">Atualizar Produto</button>
+    </div>
+  </form>
+
+  <form
+    action="<%= delete_produto_path(produto) %>"
+    method="post"
+    onsubmit="return confirm('Tem certeza que deseja deletar este produto?');"
+  >
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>"
+    >
+    <input type="hidden" name="_method" value="delete">
+    <button class="secondary">Deletar Produto</button>
+  </form>
+</main>
+
+<%= render "home/footer" %>

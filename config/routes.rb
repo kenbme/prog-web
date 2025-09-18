@@ -9,10 +9,16 @@ Rails.application.routes.draw do
 
   # Session
   post "login-cliente" => "session#login_cliente", :as => :login_cliente
+  post "login-vendedor" => "session#login_vendedor", :as => :login_vendedor
   post "login-admin" => "session#login_admin", :as => :login_admin
   post "logout" => "session#logout", :as => :logout
 
   # Produtos
+  get "produtos/new" => "produtos#new", :as => :new_produto
+  post "produtos" => "produtos#create", :as => :create_produto
+  get "produtos/:id/edit" => "produtos#edit", :as => :edit_produto
+  put "produtos/:id" => "produtos#update", :as => :update_produto
+  delete "produtos/:id" => "produtos#destroy", :as => :delete_produto
   get "produtos" => "produtos#index", :as => :produtos
 
   # Carrinho

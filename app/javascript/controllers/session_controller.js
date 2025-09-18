@@ -17,6 +17,10 @@ export default class extends Controller {
     this._send_post_request(this.urlValue)
   }
 
+  login_vendedor() {
+    this._send_post_request(this.urlValue)
+  }
+
   login_admin() {
     this._send_post_request(this.urlValue)
   }
