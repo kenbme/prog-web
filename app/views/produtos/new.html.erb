@@ -4,6 +4,7 @@
   <form
     action="<%= url_for :create_produto %>"
     method="post"
+    data-controller="form"
     enctype="multipart/form-data"
   >
     <input
@@ -12,14 +13,16 @@
       value="<%= form_authenticity_token %>"
     >
 
+    <div data-form-target="errors"></div>
+
     <div>
       <label for="produto_nome">Nome:</label>
-      <input type="text" id="produto_nome" name="produto[nome]" required>
+      <input type="text" id="produto_nome" name="produto[nome]">
     </div>
 
     <div>
       <label for="produto_descricao">Descrição:</label>
-      <textarea id="produto_descricao" name="produto[descricao]" required></textarea>
+      <textarea id="produto_descricao" name="produto[descricao]"></textarea>
     </div>
 
     <div>
@@ -28,8 +31,6 @@
         type="number"
         id="produto_preco"
         name="produto[preco]"
-        min="100"
-        required
       >
     </div>
 
@@ -39,14 +40,12 @@
         type="number"
         id="produto_estoque"
         name="produto[estoque]"
-        min="0"
-        required
       >
     </div>
 
     <div>
       <label for="produto_categoria_id">Categoria:</label>
-      <select id="produto_categoria_id" name="produto[categoria_id]" required>
+      <select id="produto_categoria_id" name="produto[categoria_id]">
         <option value="">Selecione</option>
         <% categorias.each do |categoria| %>
           <option value="<%= categoria.id %>"><%= categoria.nome %></option>

@@ -23,7 +23,7 @@ class ProdutosController < ApplicationController
     raise ForbiddenError unless current_user.vendedor?
 
     Produto.create!(produto_params)
-    redirect_to :produtos, alert: "Produto criado!"
+    render json: {}, status: :ok
   end
 
   def edit
@@ -41,7 +41,7 @@ class ProdutosController < ApplicationController
 
     produto = Produto.find(params[:id])
     produto.update!(produto_params)
-    redirect_to :produtos, alert: "Produto atualizado!"
+    render json: {}, status: :ok
   end
 
   def destroy
@@ -49,7 +49,7 @@ class ProdutosController < ApplicationController
 
     produto = Produto.find(params[:id])
     produto.destroy!
-    redirect_to :produtos, alert: "Produto deletado!"
+    render json: {}, status: :ok
   end
 
   private

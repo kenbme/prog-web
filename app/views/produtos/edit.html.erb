@@ -4,6 +4,7 @@
   <form
     action="<%= update_produto_path(produto) %>"
     method="post"
+    data-controller="form"
     enctype="multipart/form-data"
   >
     <input
@@ -13,6 +14,8 @@
     >
     <input type="hidden" name="_method" value="put">
 
+    <div data-form-target="errors"></div>
+
     <div>
       <label for="produto_nome">Nome:</label>
       <input
@@ -20,13 +23,12 @@
         id="produto_nome"
         name="produto[nome]"
         value="<%= produto.nome %>"
-        required
       >
     </div>
 
     <div>
       <label for="produto_descricao">Descrição:</label>
-      <textarea id="produto_descricao" name="produto[descricao]" required><%= produto.descricao %></textarea>
+      <textarea id="produto_descricao" name="produto[descricao]"><%= produto.descricao %></textarea>
     </div>
 
     <div>
@@ -35,9 +37,8 @@
         type="number"
         id="produto_preco"
         name="produto[preco]"
-        min="100"
+
         value="<%= produto.preco %>"
-        required
       >
     </div>
 
@@ -47,15 +48,13 @@
         type="number"
         id="produto_estoque"
         name="produto[estoque]"
-        min="0"
         value="<%= produto.estoque %>"
-        required
       >
     </div>
 
     <div>
       <label for="produto_categoria_id">Categoria:</label>
-      <select id="produto_categoria_id" name="produto[categoria_id]" required>
+      <select id="produto_categoria_id" name="produto[categoria_id]">
         <option value="">Selecione</option>
         <% categorias.each do |categoria| %>
           <option
