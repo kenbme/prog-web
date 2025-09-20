@@ -4,7 +4,7 @@ class CarrinhoController < ApplicationController
 
     usuario = current_user
     carrinho = Carrinho.per_usuario(current_user.id).includes(produtos: [:categoria, :tags, imagens_attachments: :blob]).first!
-    render "index", locals: {carrinho:, usuario:}, status: :ok
+    render "index", locals: {carrinho:, usuario:}
   end
 
   def add_to_carrinho
@@ -15,7 +15,7 @@ class CarrinhoController < ApplicationController
     item.quantidade ||= 0
     item.quantidade += params[:quantidade].to_i
     item.save!
-    render json: {}, status: :ok
+    render json: {}
   end
 
   def clean_carrinho
@@ -23,6 +23,6 @@ class CarrinhoController < ApplicationController
 
     carrinho = Carrinho.per_usuario(current_user.id).first!
     carrinho.itens.destroy_all
-    render json: {}, status: :ok
+    render json: {}
   end
 end

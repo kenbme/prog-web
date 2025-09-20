@@ -7,7 +7,7 @@ class ProdutosController < ApplicationController
     produtos = produtos.per_categoria(params[:categoria]) if params[:categoria].present?
     produtos = produtos.per_tags(params[:tags].split(",")) if params[:tags].present?
 
-    render "index", locals: {produtos:, usuario:}, status: :ok
+    render "index", locals: {produtos:, usuario:}
   end
 
   def new
@@ -16,14 +16,14 @@ class ProdutosController < ApplicationController
     usuario = current_user
     categorias = Categoria.all
     tags = Tag.all
-    render "new", locals: {categorias:, tags:, usuario:}, status: :ok
+    render "new", locals: {categorias:, tags:, usuario:}
   end
 
   def create
     raise ForbiddenError unless current_user.vendedor?
 
     Produto.create!(produto_params)
-    render json: {}, status: :ok
+    render json: {}
   end
 
   def edit
@@ -33,7 +33,7 @@ class ProdutosController < ApplicationController
     categorias = Categoria.all
     tags = Tag.all
     produto = Produto.find(params[:id])
-    render "edit", locals: {categorias:, tags:, produto:, usuario:}, status: :ok
+    render "edit", locals: {categorias:, tags:, produto:, usuario:}
   end
 
   def update
@@ -41,7 +41,7 @@ class ProdutosController < ApplicationController
 
     produto = Produto.find(params[:id])
     produto.update!(produto_params)
-    render json: {}, status: :ok
+    render json: {}
   end
 
   def destroy
@@ -49,7 +49,7 @@ class ProdutosController < ApplicationController
 
     produto = Produto.find(params[:id])
     produto.destroy!
-    render json: {}, status: :ok
+    render json: {}
   end
 
   private
