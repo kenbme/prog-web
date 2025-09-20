@@ -20,20 +20,20 @@ export default class extends Controller {
 
     fetch(url, {
       method: method,
-      headers: { "Accept": "application/json" },
-      body: formData
+      headers: { Accept: "application/json" },
+      body: formData,
     })
-      .then(res => {
+      .then((res) => {
         if (!res.ok) throw res
         return res.json()
       })
-      .then(data => {
+      .then((data) => {
         alert(data.message || "Sucesso!")
       })
-      .catch(async res => {
+      .catch(async (res) => {
         const data = await res.json()
         this.errorsTarget.innerHTML = `
-          <ul>${data.errors.map(e => `<li>${e}</li>`).join("")}</ul>
+          <ul>${data.errors.map((e) => `<li>${e}</li>`).join("")}</ul>
         `
       })
   }
