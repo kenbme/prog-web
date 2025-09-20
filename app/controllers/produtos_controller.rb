@@ -22,7 +22,21 @@ class ProdutosController < ApplicationController
   def create
     raise ForbiddenError unless current_user.vendedor?
 
-    Produto.create!(produto_params)
+    produto = Produto.new(produto_params)
+
+    if params[:new_categoria].present?
+      new_categoria = Categoria.find_or_create_by!(nome: params[:new_categoria])
+      produto.categoria = new_categoria
+    end
+
+    if params[:new_tags].present?
+      nomes = params[:new_tags].split(",").map(&:strip)
+      new_tags = nomes.map { |nome| Tag.find_or_create_by!(nome:) }
+      produto.tags += new_tags
+    end
+
+    produto.save!
+
     render json: {}
   end
 

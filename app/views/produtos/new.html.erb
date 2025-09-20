@@ -46,6 +46,11 @@
     </div>
 
     <div>
+      <label for="new_categoria">Nova categoria:</label>
+      <input type="text" id="new_categoria" name="new_categoria">
+    </div>
+
+    <div>
       <p>Tags:</p>
       <% tags.each do |tag| %>
         <label>
@@ -53,6 +58,11 @@
           <%= tag.nome %>
         </label>
       <% end %>
+    </div>
+
+    <div>
+      <label for="new_tags">Novas tags (separadas por vírgula):</label>
+      <input type="text" id="new_tags" name="new_tags">
     </div>
 
     <div>
