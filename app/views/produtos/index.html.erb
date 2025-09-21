@@ -1,7 +1,7 @@
 <%= render "home/header", usuario: %>
 
 <main class="container">
-  <form action="<%= url_for :produtos %>" method="get">
+  <form action="<%= produtos_path %>" method="get">
     <div>
       <label for="categoria">Categoria</label>
       <input

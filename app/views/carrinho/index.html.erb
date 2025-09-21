@@ -16,13 +16,13 @@
         data-controller="simple"
         data-action="click->simple#create"
         data-simple-reload-value="true"
-        data-simple-url-value="<%= url_for :create_compra %>"
+        data-simple-url-value="<%= create_compra_path %>"
       >Comprar</button>
       <button
         data-controller="simple"
         data-action="click->simple#delete"
         data-simple-reload-value="true"
-        data-simple-url-value="<%= url_for :clean_carrinho %>"
+        data-simple-url-value="<%= clean_carrinho_path %>"
       >Limpar carrinho</button>
     <% else %>
       <p>Carrinho vazio. Que tal explorar nossos produtos e encontrar algo que

@@ -18,6 +18,15 @@ class CarrinhoController < ApplicationController
     render json: {}
   end
 
+  def remove_from_carrinho
+    raise ForbiddenError unless current_user.cliente?
+
+    carrinho = Carrinho.per_usuario(current_user.id).first!
+    item = CarrinhoItem.find_by!(carrinho:, id: params[:id])
+    item.destroy!
+    render json: {}
+  end
+
   def clean_carrinho
     raise ForbiddenError unless current_user.cliente?
 

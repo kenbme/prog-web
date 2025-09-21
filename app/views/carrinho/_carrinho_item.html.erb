@@ -30,4 +30,11 @@
     <dd>R$
       <%= format_preco(carrinho_item.preco_total) %></dd>
   </dl>
+
+  <button
+    data-controller="simple"
+    data-action="click->simple#delete"
+    data-simple-reload-value="true"
+    data-simple-url-value="<%= remove_from_carrinho_path(carrinho_item.id) %>"
+  >Remover</button>
 </article>

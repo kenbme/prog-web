@@ -1,6 +1,6 @@
 <main class="container">
   <div class="grid">
-    <form action="<%= url_for :login_cliente %>" method="post">
+    <form action="<%= login_cliente_path %>" method="post">
       <input
         type="hidden"
         name="authenticity_token"
@@ -9,7 +9,7 @@
       <button type="submit">Login como Cliente</button>
     </form>
 
-    <form action="<%= url_for :login_vendedor %>" method="post">
+    <form action="<%= login_vendedor_path %>" method="post">
       <input
         type="hidden"
         name="authenticity_token"
@@ -18,7 +18,7 @@
       <button type="submit">Login como Vendedor</button>
     </form>
 
-    <form action="<%= url_for :login_admin %>" method="post">
+    <form action="<%= login_admin_path %>" method="post">
       <input
         type="hidden"
         name="authenticity_token"
