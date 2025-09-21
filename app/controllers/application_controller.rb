@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
   private
 
   def handle_usuario_not_logged_in
-    redirect_to :login, alert: "Usuário não logado"
+    redirect_to login_path, alert: "Usuário não logado"
   end
 
   def handle_forbidden_error
-    redirect_to :root, alert: "Usuário não tem permissão"
+    redirect_to root_path, alert: "Usuário não tem permissão"
   end
 
   def handle_record_invalid(exception)
