@@ -6,4 +6,8 @@ class CarrinhoItem < ApplicationRecord
 
   validates :produto_id, uniqueness: {scope: :carrinho_id}
   validates :quantidade, numericality: {greater_than: 0}
+
+  def preco_total
+    produto.preco * quantidade
+  end
 end
