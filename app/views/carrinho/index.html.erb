@@ -13,14 +13,16 @@
         <%= format_preco(carrinho.preco_total) %></p>
 
       <button
-        data-controller="compras"
-        data-action="click->compras#create"
-        data-compras-url-value="<%= url_for :create_compra %>"
+        data-controller="simple"
+        data-action="click->simple#create"
+        data-simple-reload-value="true"
+        data-simple-url-value="<%= url_for :create_compra %>"
       >Comprar</button>
       <button
-        data-controller="carrinho"
-        data-action="click->carrinho#clean_carrinho"
-        data-carrinho-url-value="<%= url_for :clean_carrinho %>"
+        data-controller="simple"
+        data-action="click->simple#delete"
+        data-simple-reload-value="true"
+        data-simple-url-value="<%= url_for :clean_carrinho %>"
       >Limpar carrinho</button>
     <% else %>
       <p>Carrinho vazio. Que tal explorar nossos produtos e encontrar algo que
