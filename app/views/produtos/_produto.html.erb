@@ -44,11 +44,12 @@
   <section>
     <% if usuario.cliente? %>
       <button
-        data-controller="carrinho"
-        data-action="click->carrinho#add_to_carrinho"
-        data-carrinho-produto-id-value="<%= produto.id %>"
-        data-carrinho-quantidade-value="1"
-        data-carrinho-url-value="<%= url_for :add_to_carrinho %>"
+        data-controller="strong"
+        data-action="click->strong#create"
+        data-strong-produto-id-value="<%= produto.id %>"
+        data-strong-quantidade-value="1"
+        data-strong-fields-value='["produtoId", "quantidade"]'
+        data-strong-url-value="<%= url_for :add_to_carrinho %>"
       >
         Adicionar ao carrinho
       </button>

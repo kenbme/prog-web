@@ -11,7 +11,10 @@ export default class extends Controller {
         "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content,
       },
     })
-      .then((response) => response.json())
+      .then((res) => {
+        if (!res.ok) throw res
+        return res.json()
+      })
       .then((data) => {
         alert("Sucesso!")
         if (this.reloadValue) {
@@ -31,7 +34,10 @@ export default class extends Controller {
         "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content,
       },
     })
-      .then((response) => response.json())
+      .then((res) => {
+        if (!res.ok) throw res
+        return res.json()
+      })
       .then((data) => {
         alert("Sucesso!")
         if (this.reloadValue) {
