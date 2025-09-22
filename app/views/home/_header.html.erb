@@ -28,14 +28,12 @@
       <button data-controller="theme" data-action="click->theme#change_theme">
         Trocar tema
       </button>
-      <form action="<%= logout_path %>" method="post">
-        <input
-          type="hidden"
-          name="authenticity_token"
-          value="<%= form_authenticity_token %>"
-        >
-        <button class="secondary" type="submit">Logout</button>
-      </form>
+      <button
+        data-controller="simple"
+        data-action="click->simple#create"
+        data-simple-redirect-value="<%= login_path %>"
+        data-simple-url-value="<%= logout_path %>"
+      >Logout</button>
     </div>
   <% end %>
 </header>

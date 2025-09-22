@@ -1,31 +1,25 @@
 <main class="container">
   <div class="grid">
-    <form action="<%= login_cliente_path %>" method="post">
-      <input
-        type="hidden"
-        name="authenticity_token"
-        value="<%= form_authenticity_token %>"
-      >
-      <button type="submit">Login como Cliente</button>
-    </form>
+    <button
+      data-controller="simple"
+      data-action="click->simple#create"
+      data-simple-redirect-value="<%= root_path %>"
+      data-simple-url-value="<%= login_cliente_path %>"
+    >Login como Cliente</button>
 
-    <form action="<%= login_vendedor_path %>" method="post">
-      <input
-        type="hidden"
-        name="authenticity_token"
-        value="<%= form_authenticity_token %>"
-      >
-      <button type="submit">Login como Vendedor</button>
-    </form>
+    <button
+      data-controller="simple"
+      data-action="click->simple#create"
+      data-simple-redirect-value="<%= root_path %>"
+      data-simple-url-value="<%= login_vendedor_path %>"
+    >Login como Vendedor</button>
 
-    <form action="<%= login_admin_path %>" method="post">
-      <input
-        type="hidden"
-        name="authenticity_token"
-        value="<%= form_authenticity_token %>"
-      >
-      <button type="submit">Login como Admin</button>
-    </form>
+    <button
+      data-controller="simple"
+      data-action="click->simple#create"
+      data-simple-redirect-value="<%= root_path %>"
+      data-simple-url-value="<%= login_admin_path %>"
+    >Login como Admin</button>
   </div>
 </main>
 
