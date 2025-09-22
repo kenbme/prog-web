@@ -24,9 +24,9 @@ Rails.application.routes.draw do
 
   # Carrinho
   get "carrinho" => "carrinho#index", :as => :carrinho
-  post "carrinho/carrinho-itens" => "carrinho#add_to_carrinho", :as => :add_to_carrinho
-  delete "carrinho" => "carrinho#clean_carrinho", :as => :clean_carrinho
-  delete "carrinho-itens/:id" => "carrinho#remove_from_carrinho", :as => :remove_from_carrinho
+  post "carrinho/itens" => "carrinho#add_to_carrinho", :as => :add_to_carrinho
+  delete "carrinho/itens" => "carrinho#clean_carrinho", :as => :clean_carrinho
+  delete "carrinho/itens/:id" => "carrinho#remove_from_carrinho", :as => :remove_from_carrinho
 
   # Compras
   post "compras" => "compras#create", :as => :create_compra
